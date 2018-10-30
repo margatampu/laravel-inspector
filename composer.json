@@ -23,6 +23,9 @@
         "laravel": {
             "providers": [
                 "MargaTampu\\LaravelInspector\\InspectorServiceProvider"
+            ],
+            "dont-discover": [
+                "barryvdh/laravel-debugbar"
             ]
         }
     }
