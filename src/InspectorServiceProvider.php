@@ -1,6 +1,6 @@
 <?php
 
-namespace MargaTampu\LaravelModelListener;
+namespace MargaTampu\LaravelInspector;
 
 use Illuminate\Support\ServiceProvider;
 
