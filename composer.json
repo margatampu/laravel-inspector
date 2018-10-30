@@ -1,0 +1,29 @@
+{
+    "name": "margatampu/laravel-inspector",
+    "description": "Laravel handler to storing model actions for every creating, updating and deleting data to/from database",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sabar Tampubolon",
+            "email": "sabartampubolon@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "MargaTampu\\LaravelInspector\\InspectorServiceProvider\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MargaTampu\\LaravelInspector\\InspectorServiceProvider"
+            ]
+        }
+    }
+}
