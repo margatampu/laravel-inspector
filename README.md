@@ -4,14 +4,6 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/margatampu/aravel-inspector.svg?style=flat-square)](https://packagist.org/packages/margatampu/aravel-inspector)
 
-INSPECTOR_MODEL_ENDPOINT=
-INSPECTOR_LOG_ENDPOINT=
-INSPECTOR_REQUEST_ENDPOINT=
-
-// check guzzle installation
-
-
-
 Watching and observing requests, logs, and listed models to maintain all possible acivities. Laravel inspector use to do it and storing data in separate database.
 
 ## Installation
@@ -88,6 +80,14 @@ You can store your generated auth token in `.env` file using `INSPECTOR_AUTHORIZ
 
 ## Go ahaed
 For expert use, you can ignore last step for integration steps, and copied laravel-inspector api routes manually to your `routes/api.php` file and use your own controller to main data before store to database.
+
+Then, you can store your destination url in `.env file` using this variables:
+
+```
+INSPECTOR_MODEL_ENDPOINT
+INSPECTOR_LOG_ENDPOINT
+INSPECTOR_REQUEST_ENDPOINT
+```
 
 ## Usage
 To use this package, after all integration steps done. You will have your requests, logs and models activity in database.
