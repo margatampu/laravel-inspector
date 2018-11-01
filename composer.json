@@ -1,6 +1,6 @@
 {
     "name": "margatampu/laravel-inspector",
-    "description": "Laravel handler to storing model actions for every creating, updating and deleting data to/from database",
+    "description": "Watching and observing requests, logs, and listed models to maintain all possible acivities.",
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "ext-curl": "*"
@@ -23,9 +24,6 @@
         "laravel": {
             "providers": [
                 "MargaTampu\\LaravelInspector\\InspectorServiceProvider"
-            ],
-            "dont-discover": [
-                "barryvdh/laravel-debugbar"
             ]
         }
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInspectorModelsTable extends Migration
+class CreateInsLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateInspectorModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inspector_models', function (Blueprint $table) {
+        Schema::create('ins_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('model_type');
-            $table->integer('model_id');
-            $table->string('method');
-            $table->text('original')->nullable();
-            $table->text('changes')->nullable();
+            $table->integer('ins_auth_id')->nullable();
+            $table->string('level');
+            $table->text('message');
+            $table->text('trace');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateInspectorModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inspector_models');
+        Schema::dropIfExists('ins_logs');
     }
 }

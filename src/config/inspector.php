@@ -1,149 +1,115 @@
 <?php
 
 return [
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Models Watched
-    // |--------------------------------------------------------------------------
-    // |
-    // | Any app model present in this array is watched by Larametrics, and its
-    // | changes are stored in the database under the larametrics_models table.
-    // | If you would like no models watched, change this to an empty array.
-    // |
-    // */
-    // 'modelsWatched' => [
-    //     'App\User'
-    // ],
+    /*
+    |--------------------------------------------------------------------------
+    | Models
+    |--------------------------------------------------------------------------
+    |
+    | All models in array will listened by inspector and store it to database.
+    | If you would like no models listened, change this to an empty array.
+    |
+    */
+    'models' => [
+        'App\User'
+    ],
 
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Models Watched - Expire Days
-    // |--------------------------------------------------------------------------
-    // |
-    // | By default, model changes are stored in the database for 30 days. You
-    // | can set your own expiration time (in days) here. During each time a change
-    // | is added to the database, any records older than the expiration time will
-    // | be removed.
-    // |
-    // */
-    // 'modelsWatchedExpireDays' => 30,
+    /*
+    |--------------------------------------------------------------------------
+    | Model Inspector - Enable
+    |--------------------------------------------------------------------------
+    |
+    | Enable model inspector to listening to all listed models.
+    | Use value 'true' to enable and 'false' to disable model inspector.
+    |
+    */
+    'enableModelInspector' => true,
 
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Models Watched - Expire Amount
-    // |--------------------------------------------------------------------------
-    // |
-    // | By default, a max of 1200 model changes are stored in the database at
-    // | any given time. Set this number to 0 if you would like to have no limit.
-    // |
-    // */
-    // 'modelsWatchedExpireAmount' => 1200,
+    /*
+    |--------------------------------------------------------------------------
+    | Log Inspector - Enable
+    |--------------------------------------------------------------------------
+    |
+    | Enable log inspector to listening to all listed log.
+    | Use value 'true' to enable and 'false' to disable log inspector.
+    |
+    */
+    'enableLogInspector' => true,
 
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Requests Watched
-    // |--------------------------------------------------------------------------
-    // |
-    // | By default, requests are not watched due to resource conservation. By
-    // | enabling this portion of the app, all requests to your site and their
-    // | details will be logged in the larametrics_requests table.
-    // |
-    // */
-    // 'requestsWatched' => false,
+    /*
+    |--------------------------------------------------------------------------
+    | Request Inspector - Enable
+    |--------------------------------------------------------------------------
+    |
+    | Enable request inspector to listening to all incoming requests.
+    | Use value 'true' to enable and 'false' to disable request inspector.
+    |
+    */
+    'enableRequestInspector' => true,
 
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Requests Watched - Expire Days
-    // |--------------------------------------------------------------------------
-    // |
-    // | By default, requests are stored for 10 days after creation. You can set
-    // | your own expiration time (in days) here. During each request log
-    // | creation, any items older than the expiration time will be removed.
-    // |
-    // */
-    // 'requestsWatchedExpireDays' => 10,
+    /*
+    |--------------------------------------------------------------------------
+    | Limit
+    |--------------------------------------------------------------------------
+    |
+    | Store all expiration limit for days and records total.
+    |
+    */
+    'limit' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Days Limit
+        |--------------------------------------------------------------------------
+        |
+        | By default, every record on database stored for 30 days. You can set your
+        | own expiration time (in days) here. During each time a change is added to
+        | the database, any records older than the expiration time will be removed.
+        | Set the numbers below to 0 if you would like to have no expiration.
+        |
+        */
+        'days' => [
+            'model'   => 30,
+            'log'     => 30,
+            'request' => 30,
+        ],
+        /*
+        |--------------------------------------------------------------------------
+        | Records Limit
+        |--------------------------------------------------------------------------
+        |
+        | By default, we store 1200 record on database at any given time.
+        | Set the numbers below to 0 if you would like to have no limit.
+        |
+        */
+        'records' => [
+            'model'   => 1200,
+            'log'     => 1200,
+            'request' => 1200,
+        ],
+    ],
 
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Requests Watched - Expire Amount
-    // |--------------------------------------------------------------------------
-    // |
-    // | By default, a max of 10000 requests are stored in the database at any
-    // | given time. Set this number to 0 if you would like to have no limit.
-    // |
-    // */
-    // 'requestsWatchedExpireAmount' => 10000,
+    /*
+    |--------------------------------------------------------------------------
+    | Endpoints
+    |--------------------------------------------------------------------------
+    |
+    | By default, inspector use built in api to store model event to database.
+    | Set this each endpoint to your project api method to store data.
+    |
+    */
+    'endpoints' => [
+        'model'   => env('INSPECTOR_MODEL_ENDPOINT', ''),
+        'log'     => env('INSPECTOR_LOG_ENDPOINT', ''),
+        'request' => env('INSPECTOR_REQUEST_ENDPOINT', ''),
+    ],
 
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Ignore Larametrics Requests
-    // |--------------------------------------------------------------------------
-    // |
-    // | If both this and requestsWatched are both set to true, Larametrics
-    // | will not log requests that are part of the package.
-    // |
-    // */
-    // 'ignoreLarametricsRequests' => true,
-
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Logs Watched
-    // |--------------------------------------------------------------------------
-    // |
-    // | Any time that the Laravel log is written to, its contents are stored
-    // | in the database under the larametrics_logs table.
-    // | If you would like to disable log storage, set this to false.
-    // |
-    // */
-    // 'logsWatched' => true,
-
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Logs Watched - Expire Days
-    // |--------------------------------------------------------------------------
-    // |
-    // | By default, logs  are stored in the database for an unlimited amount
-    // | of time. You can set your own expiration time (in days) here. Each
-    // | time a log is added to the database, any records older than the
-    // | expiration time will be removed.
-    // |
-    // */
-    // 'logsWatchedExpireDays' => 0,
-
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Logs Watched - Expire Amount
-    // |--------------------------------------------------------------------------
-    // |
-    // | By default, there is no limit on logs stored in the database at any
-    // | given time. Change this number if you would prefer there to be a limit.
-    // |
-    // */
-    // 'logsWatchedExpireAmount' => 0,
-
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Hide Unwatched Menu Items
-    // |--------------------------------------------------------------------------
-    // |
-    // | If this is set to true, the main navigation for Larametrics will hide
-    // | the links for items (models, requests, logs) that are not being watched.
-    // */
-    // 'hideUnwatchedMenuItems' => true,
-
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Notification Methods
-    // |--------------------------------------------------------------------------
-    // |
-    // | Set how you want to be notified here, by default both are env variables
-    // | but if you'd like to directly override them, you can do so here.
-    // |
-    // | 'email' should be a standard email address
-    // | 'slack' should be a Slack Webhook URL ready to receive messages
-    // */
-    // 'notificationMethods' => [
-    //     'email' => env('LARAMETRICS_NOTIFICATION_EMAIL', 'admin@localhost'),
-    //     'slack' => env('LARAMETRICS_NOTIFICATION_SLACK_WEBHOOK', '')
-    // ]
+    /*
+    |--------------------------------------------------------------------------
+    | Authorization
+    |--------------------------------------------------------------------------
+    |
+    | By default, inspector authorization used to authorize any hit to endpoint.
+    |
+    */
+    'authorization' => env('INSPECTOR_AUTHORIZATION', null),
 ];

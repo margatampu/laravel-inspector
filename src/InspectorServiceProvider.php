@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class InspectorServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Bootstrap services.
      *
      * @return void
      */
@@ -21,11 +21,27 @@ class InspectorServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the application services.
+     * Register services.
      *
      * @return void
      */
     public function register()
     {
+        // Enable inspector for model service provider using inspector config file
+        // if (config('inspector.enableModelInspector') === true) {
+        $this->app->register('MargaTampu\LaravelInspector\InspectorModelServiceProvider');
+        // }
+
+        // Enable inspector for log service provider using inspector config file
+        if (config('inspector.enableLogInspector') === true) {
+            $this->app->register('MargaTampu\LaravelInspector\InspectorLogServiceProvider');
+        }
+
+        // Enable inspector for request service provider using inspector config file
+        if (config('inspector.enableRequestInspector') === true) {
+            $this->app->register('MargaTampu\LaravelInspector\InspectorRequestServiceProvider');
+        }
+
+        $this->commands('MargaTampu\LaravelInspector\Console\Commands\InspectorAuthorizationCommand');
     }
 }
