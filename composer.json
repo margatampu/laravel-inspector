@@ -17,7 +17,14 @@
     },
     "autoload": {
         "psr-4": {
-            "MargaTampu\\LaravelInspector\\InspectorServiceProvider\\": "src/"
+            "MargaTampu\\LaravelInspector\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MargaTampu\\LaravelInspector\\InspectorServiceProvider"
+            ]
         }
     }
 }
