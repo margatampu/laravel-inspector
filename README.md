@@ -29,7 +29,7 @@ Additionally, you allowed to have the config file copied over:
 $ php artisan vendor:publish --provider="MargaTampu\LaravelInspector\InspectorServiceProvider"
 ```
 
-And migrate the necessary database structure from laravel-inspector with:
+And migrate the necessary database structure from laravel-inspector with (prerequisite setting database in `.env` file):
 
 ```bash
 $ php artisan migrate
@@ -45,6 +45,8 @@ Or, custom your own inspector auth name using this command:
 ```bash
 $ php artisan inspector:auth --new
 ```
+
+It will generate a random key, and you can [store it in your .env](#setup-env-file) file.
 
 You also allowed to rename your inspector auth name using console command line:
 
@@ -75,8 +77,10 @@ For your models activity, you need to listing all your models you want to watchi
 ```
 
 ## Setup env file
-You can store your generated auth token in `.env` file using `INSPECTOR_AUTHORIZATION` variable.
+After installation and some integration, you need to update setup in your `.env` file. Besides database setting, you can add variable:
+- `INSPECTOR_AUTHORIZATION`, to store your generated auth token.
 
+Don't forgot to change your `APP_URL` as well with your current application domain url. It is use as api route url to store all your inspector data.
 
 ## Go ahaed
 For expert use, you can ignore last step for integration steps, and copied laravel-inspector api routes manually to your `routes/api.php` file and use your own controller to main data before store to database.
