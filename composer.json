@@ -19,12 +19,5 @@
         "psr-4": {
             "MargaTampu\\LaravelInspector\\InspectorServiceProvider\\": "src/"
         }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "MargaTampu\\LaravelInspector\\InspectorServiceProvider"
-            ]
-        }
     }
 }

@@ -83,11 +83,9 @@ For expert use, you can ignore last step for integration steps, and copied larav
 
 Then, you can store your destination url in `.env file` using this variables:
 
-```
-INSPECTOR_MODEL_ENDPOINT
-INSPECTOR_LOG_ENDPOINT
-INSPECTOR_REQUEST_ENDPOINT
-```
+- `INSPECTOR_MODEL_ENDPOINT`, full url to handle model inspector.
+- `INSPECTOR_LOG_ENDPOINT`, full url to handle log inspector.
+- `INSPECTOR_REQUEST_ENDPOINT`, full url to handle request inspector.
 
 ## Usage
 To use this package, after all integration steps done. You will have your requests, logs and models activity in database.
