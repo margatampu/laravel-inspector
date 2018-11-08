@@ -6,9 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use MargaTampu\LaravelInspector\Models\InsAuth;
 use MargaTampu\LaravelInspector\Models\InsRequest;
+use MargaTampu\LaravelInspector\Http\Resources\InsRequestCollection;
+use MargaTampu\LaravelInspector\Http\Resources\InsRequestResource;
 
 class InsRequestController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return new InsRequestCollection(
+            InsRequest::latest()->paginate(config('inspector.paginate'))
+        );
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -42,5 +56,18 @@ class InsRequestController extends Controller
 
         // Return response 200
         return response()->json([], 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\InsRequest  $insRequest
+     * @return \Illuminate\Http\Response
+     */
+    public function show(InsRequest $insRequest)
+    {
+        return new InsRequestResource(
+            InsRequest::where('id', $insRequest->id)->firstOrFail()
+        );
     }
 }

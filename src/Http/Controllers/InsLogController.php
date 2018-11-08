@@ -6,9 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use MargaTampu\LaravelInspector\Models\InsAuth;
 use MargaTampu\LaravelInspector\Models\InsLog;
+use MargaTampu\LaravelInspector\Http\Resources\InsLogCollection;
+use MargaTampu\LaravelInspector\Http\Resources\InsLogResource;
 
 class InsLogController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return new InsLogCollection(
+            InsLog::latest()->paginate(config('inspector.paginate'))
+        );
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -39,5 +53,18 @@ class InsLogController extends Controller
 
         // // Return response 200
         return response()->json([], 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\InsLog  $insLog
+     * @return \Illuminate\Http\Response
+     */
+    public function show(InsLog $insLog)
+    {
+        return new InsLogResource(
+            InsLog::where('id', $insLog->id)->firstOrFail()
+        );
     }
 }
