@@ -18,19 +18,30 @@ $ composer require margatampu/laravel-inspector
 
 Package tested and worked with Laravel and Lumen framework (5.7+). 
 
-After installation using composer finishes up, you'll have to add the following line to your `config/app.php`:
+__Laravel__: After installation using composer finishes up, you'll have to add the following line to your `config/app.php`:
 
 ```php
 MargaTampu\LaravelInspector\InspectorServiceProvider::class
 ```
 
-Then copy `inspector` config file from laravel-inspector to your config folder:
+__Lumen__: For Lumen, you'll have to add the following line to your `bootstrap/app.php`:
+
+```php
+$app->register(MargaTampu\LaravelInspector\InspectorServiceProvider::class);
+```
+__Laravel__: Then copy `inspector` config file from laravel-inspector to your config folder:
 
 ```bash
 $ php artisan vendor:publish --provider="MargaTampu\LaravelInspector\InspectorServiceProvider"
 ```
 
-Migrate all necessary database structure from laravel-inspector with (prerequisite setting database in `.env` file):
+__Lumen__: For Lumen, you need to copi file manually to your config folder and enable it in `bootstrap/app.php`:
+
+```php
+$app->configure('inspector');
+```
+
+After configuration, migrate all necessary database structure from laravel-inspector with (prerequisite setting database in `.env` file):
 
 ```bash
 $ php artisan migrate
@@ -107,4 +118,3 @@ $ php artisan inspector:auth --refresh={$id}
 ## License
 
 This laravel-teams-logging package is available under the MIT license. See the LICENSE file for more info.
-

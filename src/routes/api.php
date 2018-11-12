@@ -1,13 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use MargaTampu\LaravelInspector\Models\InsModel;
-
-Route::post('test', function (Request $request) {
-    dd($request->all());
-    // InsModel::create($request->all());
-});
-
 Route::group(['as' => 'inspector::', 'prefix' => 'inspector'], function () {
     // Ins model routes
     Route::get('/models', [
