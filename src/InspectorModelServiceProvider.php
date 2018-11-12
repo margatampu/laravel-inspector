@@ -4,6 +4,7 @@ namespace MargaTampu\LaravelInspector;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use MargaTampu\LaravelInspector\Listeners\StoringModel;
 
 class InspectorModelServiceProvider extends ServiceProvider
 {
@@ -31,9 +32,7 @@ class InspectorModelServiceProvider extends ServiceProvider
         }
 
         // Listening to events
-        Event::listen($events, function ($event) {
-            Inspector::storeModel($event);
-        });
+        Event::listen($events, StoringModel::class);
     }
 
     /**

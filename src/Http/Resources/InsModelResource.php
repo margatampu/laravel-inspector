@@ -61,18 +61,13 @@ class InsModelResource extends JsonResource
             $diff['original'] = $changes;
             $diff['changes']  = $changes;
 
-            // Tag info
-            $diff['tags']['oldOpen']  = config('inspector.tags.old.open');
-            $diff['tags']['oldClose'] = config('inspector.tags.old.close');
-            $diff['tags']['newOpen']  = config('inspector.tags.new.open');
-            $diff['tags']['newClose'] = config('inspector.tags.new.close');
-
             foreach ($changes as $column => $content) {
                 $changeChars   = str_split($content);
                 $originalChars = str_split($original[$column]);
 
                 // Reset original value data because its old data come from changes
                 $diff['original'][$column] = '';
+                $diff['changes'][$column]  = '';
 
                 foreach ($originalChars as $index => $char) {
                     if (isset($changeChars[$index])) {
@@ -81,14 +76,14 @@ class InsModelResource extends JsonResource
                                 $tagClosed = false;
 
                                 // Append open tag to original data when value is same
-                                $diff['original'][$column] .= $diff['tags']['oldOpen'];
+                                $diff['original'][$column] .= config('inspector.tags.old.open');
                             }
                         } elseif ($index >= 1) {
                             if ($originalChars[$index - 1] !== $changeChars[$index - 1]) {
                                 $tagClosed = true;
 
                                 // Append close tag to original data when value is difference
-                                $diff['original'][$column] .= $diff['tags']['oldClose'];
+                                $diff['original'][$column] .= config('inspector.tags.old.close');
                             }
                         }
                     }
@@ -101,7 +96,7 @@ class InsModelResource extends JsonResource
                     $tagClosed        = true;
 
                     // Append close tag to original data when it is end of loop
-                    $diff['original'][$column] .= $diff['tags']['oldClose'];
+                    $diff['original'][$column] .= config('inspector.tags.old.close');
                 }
 
                 foreach ($changeChars as $index => $char) {
@@ -111,14 +106,14 @@ class InsModelResource extends JsonResource
                                 $tagClosed = false;
 
                                 // Append open tag to changes data when value is same
-                                $diff['changes'][$column] .= $diff['tags']['newOpen'];
+                                $diff['changes'][$column] .= config('inspector.tags.new.open');
                             }
                         } elseif ($index >= 1) {
                             if ($originalChars[$index - 1] !== $changeChars[$index - 1]) {
                                 $tagClosed = true;
 
                                 // Append close tag to changes data when value is difference
-                                $diff['changes'][$column] .= $diff['tags']['newClose'];
+                                $diff['changes'][$column] .= config('inspector.tags.new.close');
                             }
                         }
                     }
@@ -131,7 +126,7 @@ class InsModelResource extends JsonResource
                     $tagClosed = true;
 
                     // Append close tag to changes data when it is end of loop
-                    $diff['changes'][$column] .= $diff['tags']['newClose'];
+                    $diff['changes'][$column] .= config('inspector.tags.new.close');
                 }
             }
         } elseif ($original && count($original)) {

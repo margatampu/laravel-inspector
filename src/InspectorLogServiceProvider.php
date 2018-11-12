@@ -5,6 +5,7 @@ namespace MargaTampu\LaravelInspector;
 use Illuminate\Log\Events\MessageLogged;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use MargaTampu\LaravelInspector\Listeners\StoringLog;
 
 class InspectorLogServiceProvider extends ServiceProvider
 {
@@ -15,8 +16,6 @@ class InspectorLogServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Event::listen(MessageLogged::class, function (MessageLogged $event) {
-            Inspector::storeLog($event);
-        });
+        Event::listen(MessageLogged::class, StoringLog::class);
     }
 }

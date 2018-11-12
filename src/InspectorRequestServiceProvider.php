@@ -4,6 +4,7 @@ namespace MargaTampu\LaravelInspector;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use MargaTampu\LaravelInspector\Jobs\StoringRequest;
 
 class InspectorRequestServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,14 @@ class InspectorRequestServiceProvider extends ServiceProvider
                 }
 
                 if (!$ignoreRequest) {
-                    Inspector::storeRequest($routeRequest);
+                    StoringRequest::dispatch(
+                        $routeRequest->request->getMethod(),
+                        $routeRequest->request->getRequestUri(),
+                        $_SERVER['REMOTE_ADDR'],
+                        json_encode($routeRequest->request->header()),
+                        LARAVEL_START,
+                        microtime(true)
+                    );
                 }
             });
         });
