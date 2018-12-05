@@ -30,6 +30,13 @@ class StoringLog implements ShouldQueue
         // Define client using guzzle http client
         $client = new Client();
 
+        $trace   = '[]';
+        $context = $event->context;
+        if (count($context) && array_key_exists('exception', $context)) {
+            // $trace = json_encode($event->context['exception']->getTrace());
+            $trace = json_encode($event->context['exception']);
+        }
+
         // Send json data using guzzle http post
         $client->post($endpoint, [
             'headers' => [
@@ -38,7 +45,7 @@ class StoringLog implements ShouldQueue
             'json' => [
                 'level'   => $event->level,
                 'message' => $event->message,
-                'trace'   => count($event->context) ? json_encode($event->context['exception']->getTrace()) : '[]'
+                'trace'   => $trace,
             ],
         ]);
     }

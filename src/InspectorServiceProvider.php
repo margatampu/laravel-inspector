@@ -56,5 +56,6 @@ class InspectorServiceProvider extends ServiceProvider
         }
 
         $this->commands('MargaTampu\LaravelInspector\Console\Commands\InspectorAuthorizationCommand');
+        $this->commands('MargaTampu\LaravelInspector\Console\Commands\InspectorTestCommand');
     }
 }
