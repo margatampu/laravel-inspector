@@ -96,12 +96,14 @@ To use this package, after all integration steps done. You will have your reques
 You did run inspector:auth command before to generate new inspector default auth token. Beside it, we have several commands available:
 
 - Custom inspector auth name
+
 You can custom your own inspector auth name using this command:
 ```bash
 $ php artisan inspector:auth --new
 ```
 
 - Update name of existing inspector auth
+
 You allowed to rename your existing inpector auth name using: __Note: Replace {$id} with your inspector auth id__
 
 ```bash
@@ -109,11 +111,40 @@ $ php artisan inspector:auth --name={$id}
 ```
 
 - Refresh token of existing inspector auth
+
 Like inspector auth name, you also allowed to change token or refresh it using: __Note: Replace {$id} with your inspector auth id__
 
 ```bash
 $ php artisan inspector:auth --refresh={$id}
 ```
+
+## Testing
+For some laravel/lumen project, this package still not stable in some parts. If you want to test this package, you have several command to test it.
+
+- Run all modules test with a single command
+
+You can run a single command to run test all modules (model, log, and request).
+```bash
+$ php artisan inspector:test --all
+```
+
+- Run model module test only
+
+Since you can enable and disable module in configuration file, you also enable to run single module too.
+```bash
+$ php artisan inspector:test --model
+$ php artisan inspector:test --log
+$ php artisan inspector:test --request
+```
+
+### Prerequisit for testing modules
+To ensure your package test module run smoothly, you need to recheck some configurations:
+1. Since the package test using running database (not separated test database), please change your current database to new fresh database or you will need to delete inserted data manually.
+2. Queue connection using sync. Use connection besides it will force test to exit.
+3. Check if module enable for model, log, and/or request. Disable module will not run test for it.
+4. For model module test, package use User class model, so you need to ensure that User model and factory are available for use. But if you disable model module, you can skip this step.
+5. For request module test, package use guzzle/http to acces your main page (url('/')), please ensure that url exist to access. But if you disable request module, you can skipt this step too.
+
 
 ## License
 
