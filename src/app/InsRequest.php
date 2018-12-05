@@ -1,11 +1,11 @@
 <?php
 
-namespace MargaTampu\LaravelInspector\Models;
+namespace MargaTampu\LaravelInspector;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class InsLog extends Model
+class InsRequest extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,7 +13,7 @@ class InsLog extends Model
      * @var array
      */
     protected $fillable = [
-        'ins_auth_id', 'level', 'message', 'trace'
+        'ins_auth_id', 'method', 'uri', 'ip', 'headers', 'start_time', 'end_time'
     ];
 
     /**

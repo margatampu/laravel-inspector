@@ -3,7 +3,7 @@
 namespace MargaTampu\LaravelInspector\Console\Commands;
 
 use Illuminate\Console\Command;
-use MargaTampu\LaravelInspector\Models\InsAuth;
+use MargaTampu\LaravelInspector\InsAuth;
 
 class InspectorAuthorizationCommand extends Command
 {

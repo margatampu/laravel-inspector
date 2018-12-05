@@ -4,8 +4,8 @@ namespace MargaTampu\LaravelInspector\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use MargaTampu\LaravelInspector\Models\InsAuth;
-use MargaTampu\LaravelInspector\Models\InsLog;
+use MargaTampu\LaravelInspector\InsAuth;
+use MargaTampu\LaravelInspector\InsLog;
 use MargaTampu\LaravelInspector\Http\Resources\InsLogCollection;
 use MargaTampu\LaravelInspector\Http\Resources\InsLogResource;
 

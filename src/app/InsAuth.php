@@ -1,6 +1,6 @@
 <?php
 
-namespace MargaTampu\LaravelInspector\Models;
+namespace MargaTampu\LaravelInspector;
 
 use Illuminate\Database\Eloquent\Model;
 

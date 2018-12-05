@@ -4,8 +4,8 @@ namespace MargaTampu\LaravelInspector\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use MargaTampu\LaravelInspector\Models\InsModel;
-use MargaTampu\LaravelInspector\Models\InsAuth;
+use MargaTampu\LaravelInspector\InsModel;
+use MargaTampu\LaravelInspector\InsAuth;
 use MargaTampu\LaravelInspector\Http\Resources\InsModelCollection;
 use MargaTampu\LaravelInspector\Http\Resources\InsModelResource;
 
