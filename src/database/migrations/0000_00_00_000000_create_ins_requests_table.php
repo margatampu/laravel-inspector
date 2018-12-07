@@ -17,7 +17,7 @@ class CreateInsRequestsTable extends Migration
             $table->increments('id');
             $table->integer('ins_auth_id')->nullable();
             $table->string('method');
-            $table->string('uri');
+            $table->text('uri');
             $table->string('ip')->nullable();
             $table->text('headers')->nullable();
             $table->float('start_time', 16, 4)->nullable();
