@@ -23,6 +23,7 @@ class InsRequestResource extends JsonResource
             'headers'     => $this->headers,
             'start_time'  => $this->start_time,
             'end_time'    => $this->end_time,
+            'exec_time'   => floor(($this->end_time - $this->start_time) * 1000) . 'ms',
             'created_at'  => $this->created_at,
             'updated_at'  => $this->updated_at,
             'links'       => [
