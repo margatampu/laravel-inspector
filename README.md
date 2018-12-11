@@ -35,7 +35,7 @@ __Laravel__: Then copy `inspector` config file from laravel-inspector to your co
 $ php artisan vendor:publish --provider="MargaTampu\LaravelInspector\InspectorServiceProvider"
 ```
 
-__Lumen__: For Lumen, you need to copi file manually to your config folder and enable it in `bootstrap/app.php`:
+__Lumen__: For Lumen, you need to copy file manually to your config folder and enable it in `bootstrap/app.php`:
 
 ```php
 $app->configure('inspector');
@@ -86,6 +86,14 @@ Then, you can store your destination url in `.env file` using this variables:
 - `INSPECTOR_MODEL_ENDPOINT`, full url to handle model inspector.
 - `INSPECTOR_LOG_ENDPOINT`, full url to handle log inspector.
 - `INSPECTOR_REQUEST_ENDPOINT`, full url to handle request inspector.
+
+## Queueing Jobs
+
+To prevent inspector slowing your projects, you can queueing inspector jobs using separate queue name `inspector`. You can run single queue worker for it using this command:
+
+```bash
+$ php artisan queue:work --tries=1 --queue=inspector
+```
 
 ## Usage
 
