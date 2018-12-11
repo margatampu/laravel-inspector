@@ -30,6 +30,8 @@ class StoringRequest implements ShouldQueue
      */
     public function __construct($method, $uri, $ip, $header, $start, $end)
     {
+        $this->queue = 'inspector';
+
         $this->method = $method;
         $this->uri    = $uri;
         $this->ip     = $ip;
