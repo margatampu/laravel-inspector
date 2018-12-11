@@ -18,6 +18,7 @@ class InsRequestResource extends JsonResource
             'id'          => $this->id,
             'ins_auth_id' => $this->ins_auth_id,
             'method'      => $this->method,
+            'uri'         => $this->uri,
             'ip'          => $this->ip,
             'headers'     => $this->headers,
             'start_time'  => $this->start_time,
