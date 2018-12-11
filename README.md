@@ -77,7 +77,7 @@ After installation and some integration, you need to update setup in your `.env`
 
 Don't forgot to change your `APP_URL` as well with your current application domain url. It is use as api route url to store all your inspector data.
 
-## Go ahaed
+## Go Ahaed
 
 For expert use, you can ignore last step for integration steps for copying inspector API, and copied laravel-inspector api routes manually to your `routes/api.php` file and use your own controller to maintain data before store to database.
 
