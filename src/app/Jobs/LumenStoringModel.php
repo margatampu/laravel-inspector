@@ -23,6 +23,8 @@ class LumenStoringModel extends Job
      */
     public function __construct($inspectable_type, $inspectable_id, $method, $original, $changes)
     {
+        $this->queue = 'inspector';
+        
         $this->inspectable_type = $inspectable_type;
         $this->inspectable_id   = $inspectable_id;
         $this->method           = $method;
