@@ -23,7 +23,7 @@ return [
     | Use value 'true' to enable and 'false' to disable model inspector.
     |
     */
-    'enableModelInspector' => true,
+    'enableModelInspector' => env('INSPECTOR_MODEL_ENABLE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ return [
     | Use value 'true' to enable and 'false' to disable log inspector.
     |
     */
-    'enableLogInspector' => true,
+    'enableLogInspector' => env('INSPECTOR_LOG_ENABLE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     | Use value 'true' to enable and 'false' to disable request inspector.
     |
     */
-    'enableRequestInspector' => true,
+    'enableRequestInspector' => env('INSPECTOR_REQUEST_ENABLE', false),
 
     /*
     |--------------------------------------------------------------------------
