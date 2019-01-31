@@ -76,6 +76,7 @@ For your models activity, you need to listing all your models you want to watche
 
 After installation and some integration, you need to update setup in your `.env` file. Besides database setting, you can add variable:
 
+- `INSPECTOR_LOG`, to limit log level watched.
 - `INSPECTOR_MODEL_ENABLE`, set to true to enable watched listed models.
 - `INSPECTOR_LOG_ENABLE`, set to true to enable watched all log generated.
 - `INSPECTOR_REQUEST_ENABLE`, set to true to enable watched request called.

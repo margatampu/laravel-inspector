@@ -65,47 +65,87 @@ class InspectorLogServiceProvider extends ServiceProvider
             try {
                 $trace   = '[]';
                 $context = $e->context;
-                if (count($context) && array_key_exists('exception', $context)) {
-                    if (is_string($context['exception'])) {
-                        $trace = $context['exception'];
-                    } else {
-                        $exceptions = collect($context['exception']->getTrace());
 
-                        $exceptions = $exceptions->map(function ($exception) {
-                            if (isset($exception['class']) && isset($exception['function'])) {
-                                return [
-                                    'main'      => $exception['class'],
-                                    'separator' => '@',
-                                    'detail'    => $exception['function'],
-                                ];
-                            } else {
-                                if (isset($exception['file'])) {
+                // Dont store log data if is not watched
+                if ($this->isWatched($e->level)) {
+                    if (count($context) && array_key_exists('exception', $context)) {
+                        if (is_string($context['exception'])) {
+                            $trace = $context['exception'];
+                        } else {
+                            $exceptions = collect($context['exception']->getTrace());
+
+                            $exceptions = $exceptions->map(function ($exception) {
+                                if (isset($exception['class']) && isset($exception['function'])) {
                                     return [
-                                        'main'      => $exception['file'],
-                                        'separator' => ':',
-                                        'detail'    => $exception['line'],
+                                        'main'      => $exception['class'],
+                                        'separator' => '@',
+                                        'detail'    => $exception['function'],
                                     ];
+                                } else {
+                                    if (isset($exception['file'])) {
+                                        return [
+                                            'main'      => $exception['file'],
+                                            'separator' => ':',
+                                            'detail'    => $exception['line'],
+                                        ];
+                                    }
                                 }
-                            }
 
-                            return null;
-                        })->filter(function ($exception) {
-                            return $exception;
-                        });
+                                return null;
+                            })->filter(function ($exception) {
+                                return $exception;
+                            });
 
-                        $trace = json_encode($exceptions->toArray());
+                            $trace = json_encode($exceptions->toArray());
+                        }
                     }
-                }
 
-                // Separate job for lumen and laravel
-                if ($this->is_lumen) {
-                    dispatch(new LumenStoringLog($e->level, $e->message->getMessage(), $trace));
-                } else {
-                    StoringLog::dispatch($e->level, $e->message, $trace);
+                    // Separate job for lumen and laravel
+                    if ($this->is_lumen) {
+                        dispatch(new LumenStoringLog($e->level, $e->message->getMessage(), $trace));
+                    } else {
+                        StoringLog::dispatch($e->level, $e->message, $trace);
+                    }
                 }
             } catch (\Exception $e) {
                 // Ignore exception
             }
         });
+    }
+
+    /**
+     * Is wathced
+     * Check if log is watched or not using configrable setting
+     *
+     * @param String $level
+     */
+    private function isWatched($level)
+    {
+        // Available log levels
+        $levels = ['emergency', 'alert', 'critical', 'error', 'warning', 'notice', 'info', 'debug'];
+
+        // Setup minimum level
+        $minimumLevel = false;
+
+        // Get level log from config file
+        if (config('inspector.log')) {
+            $minimumLevel = array_search(config('inspector.log'), $levels);
+        }
+
+        // When log level not configured or using non exists level, we automatically set as warning
+        if ($minimumLevel === false) {
+            // 4 => warning
+            $minimumLevel = 4;
+        }
+
+        // Find inserted level key on array
+        $insertedLevel = array_search($level, $levels);
+
+        // When key of minimum level are greater or equal than inserted key level, its mean log are watched
+        if ($minimumLevel >= $insertedLevel) {
+            return true;
+        }
+
+        return false;
     }
 }

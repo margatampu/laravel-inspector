@@ -16,6 +16,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Log
+    |--------------------------------------------------------------------------
+    |
+    | Setup minimal log level to watched. Log level priority used are laravel
+    | log priority which is emergency as the highest priority and debug as lowest
+    | ('emergency', 'alert', 'critical', 'error', 'warning', 'notice', 'info', 'debug')
+    |
+    */
+    'log' => env('INSPECTOR_LOG', 'warning'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Model Inspector - Enable
     |--------------------------------------------------------------------------
     |
