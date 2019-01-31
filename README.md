@@ -1,8 +1,8 @@
 # laravel-inspector
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/margatampu/aravel-inspector.svg?style=flat-square)](https://packagist.org/packages/margatampu/aravel-inspector)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/margatampu/laravel-inspector.svg?style=flat-square)](https://packagist.org/packages/margatampu/laravel-inspector)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/margatampu/aravel-inspector.svg?style=flat-square)](https://packagist.org/packages/margatampu/aravel-inspector)
+[![Total Downloads](https://img.shields.io/packagist/dt/margatampu/laravel-inspector.svg?style=flat-square)](https://packagist.org/packages/margatampu/laravel-inspector)
 
 Watching and observing requests, logs, and listed models to maintain all possible activities. Laravel inspector use to do it and storing data in separate database.
 
