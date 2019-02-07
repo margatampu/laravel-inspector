@@ -29,7 +29,7 @@ class StoringModel implements ShouldQueue
      */
     public function __construct($inspectable_type, $inspectable_id, $method, $original, $changes)
     {
-        $this->queue = 'inspector';
+        $this->queue = config('inspector.queueName');
 
         $this->inspectable_type = $inspectable_type;
         $this->inspectable_id   = $inspectable_id;

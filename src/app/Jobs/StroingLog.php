@@ -27,7 +27,7 @@ class StoringLog implements ShouldQueue
      */
     public function __construct($level, $message, $trace)
     {
-        $this->queue = 'inspector';
+        $this->queue = config('inspector.queueName');
 
         $this->level   = $level;
         $this->message = $message;

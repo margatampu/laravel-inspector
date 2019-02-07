@@ -2,11 +2,16 @@
 
 namespace MargaTampu\LaravelInspector\Jobs;
 
-use App\Jobs\Job;
 use GuzzleHttp\Client;
+use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LumenStoringLog extends Job
+class LumenStoringLog implements ShouldQueue
 {
+    use InteractsWithQueue, Queueable, SerializesModels;
+
     /**
      * Storing log variables
      */
@@ -21,7 +26,7 @@ class LumenStoringLog extends Job
      */
     public function __construct($level, $message, $trace)
     {
-        $this->queue = 'inspector';
+        $this->queue = config('inspector.queueName');
 
         $this->level   = $level;
         $this->message = $message;

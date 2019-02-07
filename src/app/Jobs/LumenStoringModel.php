@@ -2,11 +2,16 @@
 
 namespace MargaTampu\LaravelInspector\Jobs;
 
-use App\Jobs\Job;
 use GuzzleHttp\Client;
+use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LumenStoringModel extends Job
+class LumenStoringModel implements ShouldQueue
 {
+    use InteractsWithQueue, Queueable, SerializesModels;
+
     /**
      * Storing model variables
      */
@@ -23,8 +28,8 @@ class LumenStoringModel extends Job
      */
     public function __construct($inspectable_type, $inspectable_id, $method, $original, $changes)
     {
-        $this->queue = 'inspector';
-        
+        $this->queue = config('inspector.queueName');
+
         $this->inspectable_type = $inspectable_type;
         $this->inspectable_id   = $inspectable_id;
         $this->method           = $method;

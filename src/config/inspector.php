@@ -28,6 +28,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Queue Name
+    |--------------------------------------------------------------------------
+    |
+    | Setting queue name to separate or merge your app queue. You can use 'default'
+    | to merge with laravel default queue, or use 'inspector' to separate from your
+    | laravel queue. Or you can even change it to separate multiple inspector queue
+    | on a single server. e.q: 'default', 'inspector'
+    */
+    'queueName' => env('INSPECTOR_QUEUE_NAME', 'inspector'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Model Inspector - Enable
     |--------------------------------------------------------------------------
     |
