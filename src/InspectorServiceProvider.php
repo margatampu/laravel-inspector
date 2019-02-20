@@ -65,7 +65,9 @@ class InspectorServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        if (Inspector::$runsMigrations) {
+            $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        }
 
         $this->publishes([
             __DIR__ . '/config/inspector.php' => config_path('inspector.php'),

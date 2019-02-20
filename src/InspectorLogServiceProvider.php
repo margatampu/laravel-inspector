@@ -102,7 +102,7 @@ class InspectorLogServiceProvider extends ServiceProvider
 
                     // Separate job for lumen and laravel
                     if ($this->is_lumen) {
-                        dispatch(new LumenStoringLog($e->level, $e->message->getMessage(), $trace));
+                        dispatch(new LumenStoringLog($e->level, $e->message, $trace));
                     } else {
                         StoringLog::dispatch($e->level, $e->message, $trace);
                     }

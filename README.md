@@ -95,6 +95,10 @@ Then, you can store your destination url in `.env file` using this variables:
 - `INSPECTOR_LOG_ENDPOINT`, full url to handle log inspector.
 - `INSPECTOR_REQUEST_ENDPOINT`, full url to handle request inspector.
 
+## Migration Customization
+
+If you plan to separate service and consumer, you can ignore migrations of inspector package to prevent project migrate unnecessary tables to your consumer database. You should call the `Inspector::ignoreMigrations` method in the register method of your `AppServiceProvider`.
+
 ## Queueing Jobs
 
 To prevent inspector slowing your projects, you can queueing inspector jobs using separate queue name `inspector`. You can run single queue worker for it using this command:
