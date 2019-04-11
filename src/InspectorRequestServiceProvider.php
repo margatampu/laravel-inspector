@@ -24,7 +24,8 @@ class InspectorRequestServiceProvider extends ServiceProvider
                 // or come from user custom endpoints
                 if (
                     (isset($actions['controller']) && str_contains($actions['controller'], 'LaravelInspector')) ||
-                    in_array($routeRequest->request->fullUrl(), config('inspector.endpoints'))
+                    in_array($routeRequest->request->fullUrl(), config('inspector.endpoints')) ||
+                    in_array($routeRequest->request->getPathInfo(), config('inspector.endpoints'))
                 ) {
                     $ignoreRequest = true;
                 }
