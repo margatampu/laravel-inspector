@@ -49,7 +49,7 @@ class LumenStoringLog implements ShouldQueue
         }
 
         // Define client using guzzle http client
-        $client = new Client();
+        $client = new Client(['timeout' => 5]);
 
         // Send json data using guzzle http post
         $client->post($endpoint, [
