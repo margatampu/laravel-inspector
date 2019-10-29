@@ -2,6 +2,7 @@
 
 namespace MargaTampu\LaravelInspector;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 
 class InspectorServiceProvider extends ServiceProvider
@@ -51,7 +52,7 @@ class InspectorServiceProvider extends ServiceProvider
         }
         $this->app      = $app;
         $this->version  = $app->version();
-        $this->is_lumen = str_contains($this->version, 'Lumen');
+        $this->is_lumen = Str::contains($this->version, 'Lumen');
     }
 
     /**
